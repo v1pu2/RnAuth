@@ -4,24 +4,14 @@ import {
   TextInput,
   View,
   Text,
-  ScrollView,
-  Image,
-  Keyboard,
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-import Loader from './Components/Loader';
-
 const LoginScreen = ({navigation}) => {
   const [userEmail, setUserEmail] = useState('');
-  // const [userPassword, setUserPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  // const [errortext, setErrortext] = useState('');
-
-  // const passwordInputRef = createRef();
 
   const handleSubmitPress = () => {
     AsyncStorage.setItem('user_id', userEmail);
