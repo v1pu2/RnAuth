@@ -6,96 +6,28 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 // Import Screens
-import HomeScreen from './DrawerScreens/HomeScreen';
-import SettingsScreen from './DrawerScreens/SettingsScreen';
-import Bpage1 from './DrawerScreens/Bpage1';
-import Bpage2 from './DrawerScreens/Bpage2';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import BottomNavigator from './BottomNavigator';
+import TopTabStack from './TopTabNavigator';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-const Tab = createMaterialTopTabNavigator();
-const BottomTab = createBottomTabNavigator();
 
 const TabStack = () => {
-  return (
-    <Tab.Navigator
-      initialRouteName="HomeScreen"
-      tabBarOptions={{
-        activeTintColor: '#FFFFFF',
-        inactiveTintColor: '#F8F8F8',
-        style: {
-          backgroundColor: '#f4511e',
-        },
-        labelStyle: {
-          textAlign: 'center',
-        },
-        indicatorStyle: {
-          borderBottomColor: '#87B56A',
-          borderBottomWidth: 2,
-        },
-      }}>
-      <Tab.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{
-          tabBarLabel: 'Home Screen',
-        }}
-      />
-      <Tab.Screen
-        name="SettingsScreen"
-        component={SettingsScreen}
-        options={{
-          tabBarLabel: 'Explore Screen',
-        }}
-      />
-    </Tab.Navigator>
-  );
+  return <TopTabStack />;
 };
+
 const BottomTabStack = () => {
-  return (
-    <Tab.Navigator
-      initialRouteName="HomeScreen"
-      tabBarOptions={{
-        activeTintColor: '#FFFFFF',
-        inactiveTintColor: '#F8F8F8',
-        style: {
-          backgroundColor: '#f4511e',
-        },
-        labelStyle: {
-          textAlign: 'center',
-        },
-        indicatorStyle: {
-          borderBottomColor: '#87B56A',
-          borderBottomWidth: 2,
-        },
-      }}>
-      <Tab.Screen
-        name="HomeScreen"
-        component={Bpage1}
-        options={{
-          tabBarLabel: 'Page 1',
-        }}
-      />
-      <Tab.Screen
-        name="SettingsScreen"
-        component={Bpage2}
-        options={{
-          tabBarLabel: 'Page2',
-        }}
-      />
-    </Tab.Navigator>
-  );
+  return <BottomNavigator />;
 };
+
 const homeScreenStack = ({navigation}) => {
   return (
     <Stack.Navigator initialRouteName="HomeScreen">
       <Stack.Screen
         name="HomeScreen"
-        // component={HomeScreen}
         component={TabStack}
         options={{
           title: 'Home', //Set Header Title
@@ -134,7 +66,6 @@ const settingScreenStack = ({navigation}) => {
       <Stack.Screen
         name="SettingsScreen"
         component={BottomTabStack}
-        // component={SettingsScreen}
         options={{
           title: 'Settings', //Set Header Title
         }}
@@ -145,9 +76,6 @@ const settingScreenStack = ({navigation}) => {
 
 const DrawerNavigatorRoutes = (props) => {
   return (
-    // <View>
-    //   <Text>drawer navigator</Text>
-    // </View>
     <Drawer.Navigator
       drawerContentOptions={{
         activeTintColor: '#cee1f2',
